@@ -11,7 +11,7 @@
         .navbar .navbar-brand:hover { color: #fff; }
         .nav-link { color: #fff; }
         .nav-link:hover { color: #ddd; }
-        .jumbotron { background-color: #007bff; color: white; }
+        .jumbotron { background-color: #333; color: white; }
         .section { padding: 60px 0; }
     </style>
 </head>
@@ -44,7 +44,6 @@
 </header>
 
 <main>
-
     <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
         <ol class="carousel-indicators">
             <li
@@ -115,56 +114,57 @@
     </div>
     
     <!-- About Me Section -->
-    <section id="about" class="section bg-light">
+    <section id="about" class="section bg-light border-section">
         <div class="container">
             <h2 class="text-center">About Me</h2>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-lg-4 col-md-12 d-flex justify-content-center align-items-center mb-4">
                     <!-- Profile picture here -->
-                    <img src="1385136139955.webp" alt="Phakkhapon Kaewmanee" class="img-fluid rounded-circle">
+                    <img src="1385136139955.webp" alt="Phakkhapon Kaewmanee" class="img-fluid rounded-circle" style="width: 200px; height: 200px; object-fit: cover;">
                 </div>
-                <div class="col-md-8">
-                    <section id="interests" class="section bg-light">
-                        <div class="container">
-                            <h2 class="text-left">Interests</h2>
-                            <div id="interestsCarousel" class="carousel slide" data-bs-ride="carousel">
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <h3>Me am like the Coding</h3>
-                                        <p>Me been liking the coding since me first day in university.</p>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <h3>Me am like the book reading</h3>
-                                        <p>Me been liking the reading of book since young.</p>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <h3>Me am like watching Anime</h3>
-                                        <p>Me love anime, anime is me life.</p>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <h3>Me am like watching YouTube</h3>
-                                        <p>Me like watching videos online, it is the fun.</p>
-                                    </div>
+                <div class="col-lg-8 col-md-12">
+                    <p class="lead">
+                        This is me page.
+                    </p>
+                    <!-- Interests section adjusted to be less dominant -->
+                    <h4 class="text-left mt-4">Interests</h4>
+                    <div class="row row-cols-1 row-cols-md-2 g-2">
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Coding</h5>
+                                    <p class="card-text">Me been liking the coding since me first day in university.</p>
                                 </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#interestsCarousel" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#interestsCarousel" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
                             </div>
                         </div>
-                    </section>
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Book Reading</h5>
+                                    <p class="card-text">Me been liking the reading of book since young.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Anime</h5>
+                                    <p class="card-text">Me love anime, anime is me life.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">YouTube</h5>
+                                    <p class="card-text">Me like watching videos online, it is the fun.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Skills Section -->
-    <section id="skills" class="section bg-light">
+                <!-- Skills Section -->
+    <section id="skills" class="section bg-light border-section">
         <div class="container">
             <h2 class="text-center">Skills</h2>
             <div class="row justify-content-center align-items-stretch">
@@ -196,6 +196,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
             </div>
         </div>
     </section>
