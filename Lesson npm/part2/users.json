@@ -16,5 +16,11 @@
         "password": "3333",
         "fullname": "John Doe",
         "id": "2"
+    },
+    {
+        "username": "Cheb",
+        "password": "Cheb",
+        "fullname": "Cheb A Batch",
+        "id": "3"
     }
 ]}
