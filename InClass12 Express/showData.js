@@ -7,6 +7,16 @@ app.use(express.urlencoded({ extended: true }));
 
 const outputFilePath = path.join(__dirname, 'output.json');
 
+// Ensure the output.json file exists and is initialized
+if (!fs.existsSync(outputFilePath)) {
+    fs.writeFileSync(outputFilePath, JSON.stringify([]));
+}
+
+// Serve the HTML form
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'showForm.html'));
+});
+
 app.post('/showForm', (req, res) => {
     const { fname, lname, input1, input2 } = req.body;
     const result = parseInt(input1) + parseInt(input2);
@@ -15,16 +25,18 @@ app.post('/showForm', (req, res) => {
     // Read existing data
     fs.readFile(outputFilePath, 'utf8', (err, data) => {
         let jsonData = [];
-        if (!err && data) {
-            jsonData = JSON.parse(data);
+        if (data) {
+            try {
+                jsonData = JSON.parse(data);
+            } catch (parseError) {
+                console.error('Error parsing JSON data', parseError);
+                jsonData = [];
+            }
         }
         jsonData.push(newEntry);
 
         // Write new data
         fs.writeFile(outputFilePath, JSON.stringify(jsonData, null, 2), (err) => {
-            if (err) {
-                console.error('Error writing to output file', err);
-            }
             res.redirect('/showData');
         });
     });
@@ -32,11 +44,15 @@ app.post('/showForm', (req, res) => {
 
 app.get('/showData', (req, res) => {
     fs.readFile(outputFilePath, 'utf8', (err, data) => {
-        if (err) {
-            res.status(500).send('Error reading data');
-            return;
+        let jsonData = [];
+        if (data) {
+            try {
+                jsonData = JSON.parse(data);
+            } catch (parseError) {
+                console.error('Error parsing JSON data', parseError);
+                jsonData = [];
+            }
         }
-        const jsonData = JSON.parse(data);
         res.send(`<pre>${JSON.stringify(jsonData, null, 2)}</pre>`);
     });
 });

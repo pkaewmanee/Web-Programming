@@ -1,0 +1,17 @@
+[
+  {
+    "fname": "Tom",
+    "lname": "Cat",
+    "result": 5
+  },
+  {
+    "fname": "Tom",
+    "lname": "Cat",
+    "result": 5
+  },
+  {
+    "fname": "Bob",
+    "lname": "Cat",
+    "result": 3
+  }
+]
