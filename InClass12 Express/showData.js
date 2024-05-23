@@ -13,47 +13,29 @@ if (!fs.existsSync(outputFilePath)) {
 }
 
 // Serve the HTML form
-app.get('/', (req, res) => {
+app.get('/showForm', (req, res) => {
     res.sendFile(path.join(__dirname, 'showForm.html'));
 });
 
-app.post('/showForm', (req, res) => {
+app.post('/showData', (req, res) => {
+
     const { fname, lname, input1, input2 } = req.body;
     const result = parseInt(input1) + parseInt(input2);
+
     const newEntry = { fname, lname, result };
 
     // Read existing data
     fs.readFile(outputFilePath, 'utf8', (err, data) => {
-        let jsonData = [];
+        let FormData = [];
         if (data) {
-            try {
-                jsonData = JSON.parse(data);
-            } catch (parseError) {
-                console.error('Error parsing JSON data', parseError);
-                jsonData = [];
-            }
+            FormData = JSON.parse(data);
         }
-        jsonData.push(newEntry);
+        FormData.push(newEntry);
 
         // Write new data
-        fs.writeFile(outputFilePath, JSON.stringify(jsonData, null, 2), (err) => {
-            res.redirect('/showData');
+        fs.writeFile(outputFilePath, JSON.stringify(FormData, null, 2), (err) => {
+            res.send(`<pre>${JSON.stringify(FormData, null, 2)}</pre>`);
         });
-    });
-});
-
-app.get('/showData', (req, res) => {
-    fs.readFile(outputFilePath, 'utf8', (err, data) => {
-        let jsonData = [];
-        if (data) {
-            try {
-                jsonData = JSON.parse(data);
-            } catch (parseError) {
-                console.error('Error parsing JSON data', parseError);
-                jsonData = [];
-            }
-        }
-        res.send(`<pre>${JSON.stringify(jsonData, null, 2)}</pre>`);
     });
 });
 
