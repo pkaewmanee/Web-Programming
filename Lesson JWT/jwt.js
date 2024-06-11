@@ -44,20 +44,19 @@ app.post('/api/login', (req, res) => {
     }
 });
 
-app.get('/api/userprofile', ensureToken, (req, res) => {
-    jwt.verify(req.token, 'secret_key_goes_here', function(err, data) {
-        if (err) {
-            res.status(403).json({ message: 'forbidden' });
-        } else {
-            res.json({
-                description: `User profile: ${data.username}`,
-                data: {
-                    username: data.username,
-                    iat: data.iat
-                }
-            });
-        }
-    });
+app.get("/api/userprofile", ensureToken, (req, res) => {
+  jwt.verify(req.token, "secret_key_goes_here", function (err, data) {
+    if (err) {
+      console.log(err);
+      res.sendStatus(403);
+    } else {
+      delete data.password;
+      res.json({
+        description: `User profile: ${data.username}`,
+        data: data,
+      });
+    }
+  });
 });
 
 app.listen(3000, function () {
