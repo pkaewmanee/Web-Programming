@@ -27,8 +27,9 @@ app.post('/api/login', (req, res) => {
     const { username, password } = req.body;
 
     if (username === 'test' && password === '1234') {
-        const user = { id: 3 };
-        const token = jwt.sign({ user: user.id }, 'secret_key_goes_here');
+      const user = { username: username };
+      const token = jwt.sign(user, 'secret_key_goes_here');
+      
         res.json({
             message: "Authenticated! Use this token in the \"Authorization\" header",
             token: token
